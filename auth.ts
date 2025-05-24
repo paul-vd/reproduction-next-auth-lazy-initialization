@@ -50,7 +50,11 @@ const authConfig: NextAuthConfig = {
   experimental: { enableWebAuthn: true },
 };
 
-export const { handlers, auth, signIn, signOut } = NextAuth(authConfig);
+export const { handlers, auth, signIn, signOut } = NextAuth((req) => {
+  console.log(">>>>", req);
+
+  return authConfig;
+});
 
 declare module "next-auth" {
   interface Session {
